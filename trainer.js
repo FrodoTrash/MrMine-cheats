@@ -12,6 +12,7 @@ function createTrainer(){
   document.write( '    <button id="tAutoOpen" value="off" onClick="autoOpenToggle()" >auto open chests OFF</button><br>\n' );
   document.write( '    <button id="tAutoSell" onClick="autoSellToggle()" >auto sell OFF</button><br>\n' );
   document.write( '    <button id="tAutoMineral" onClick="autoMineralToggle()" >auto mine minerals OFF</button><br>\n' );
+  document.write( '    <button id="tAutoBattle" onClick="autoBattleToggle()" >auto battle OFF</button><br>\n' );
   document.write( '  </div>\n' );
   document.write( '</div>' );
   var style = document.createElement('style')
@@ -63,7 +64,7 @@ function createTrainerIcon(Trainer){
   trainerMenuIco.src="Shared/Assets/Relics/GoldChest.png"
   trainerMenuIco.id="trainerIco"
   trainerMenuIco.style.width = "50%";
-  document.getElementById("L4gap8").appendChild(trainerMenuIco);
+  document.getElementById("L4gap10").appendChild(trainerMenuIco);
   trainerMenuIco.onclick= function() { 
     trainerOpen(Trainer);
   };
@@ -111,10 +112,23 @@ function autoMineralToggle(){
   }
 }
 
+function autoBattleToggle(){
+  button = document.getElementById('tAutoBattle')
+  if(button.innerText == "auto battle OFF"){
+    isAutoBattling = true
+    button.innerText = "auto battle ON"
+  }
+  else{
+    isAutoBattling = false
+    button.innerText = "auto battle OFF"
+  }
+}
+
 
 isAutoSelling = false
 isAutoOpening = false
 isAutoMineral = false
+isAutoBattling = false
 
 if(cheatsEnable){
   createTrainer()
@@ -125,6 +139,7 @@ if(cheatsEnable){
   tAutoSell = document.getElementById('tAutoSell')
   tAutoOpen = document.getElementById('tAutoOpen')
   tAutoMineral = document.getElementById('tAutoMineral')
+  tAutoBattling = document.getElementById('tAutoBattle')
   execute()
 }
 
@@ -164,5 +179,15 @@ async function execute() {
       }
     }
 
+    // auto battleing
+    if(isAutoBattling){
+      if(battleWaiting != 0){
+        panToViewDepth(battleWaiting[1])
+        preparebattle()
+        depthOfMonster = battleWaiting[1]
+        battleWaiting = []
+        wonBattle()
+      } 
+    }
   }
 }
