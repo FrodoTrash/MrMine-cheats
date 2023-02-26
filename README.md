@@ -1,9 +1,10 @@
-# MrMine cheats
+# MrMine cheats 
+
+**check smetana branch for more features**
 
 - auto sell
 - auto open chests
 - auto mine minerals
-- auto win monsters
 
 works 26/02/2023
 
