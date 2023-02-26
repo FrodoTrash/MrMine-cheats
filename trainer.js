@@ -144,21 +144,19 @@ if(cheatsEnable){
 }
 
 
-async function execute() {
-  while (cheatsEnable) {
-    await new Promise(resolve => setTimeout(resolve, 1500));
-	if(isAutoSelling && isCapacityFull()) { 
+async function execute(){
+  while (cheatsEnable){
+    await new Promise(resolve => setTimeout(resolve, 1500))
+	if(isAutoSelling && isCapacityFull()){ 
     if(windowState[1] != 1 ) //ce okno za prodajat ni odprto
-      windowState[1] = 1;    // nastavi na 1, 0 = ni odprto, [1] pozicija
+      windowState[1] = 1 // nastavi na 1, 0 = ni odprto, [1] pozicija
       ///earth
-      sellAllMinerals(0)  //ores
-      //sellAllMinerals(1)  //isotpes
+      sellAllMinerals(0) //ores
+      //sellAllMinerals(1) //isotppes
       //moon
-      moon.mineralIdsToSell.forEach(mineralID => sellMineral(mineralID));
-      //moon.isotopeIdsToSell.forEach(isotopeID => sellMineral(isotopeID));
-
+      moon.mineralIdsToSell.forEach(mineralID => sellMineral(mineralID)) //ores
+      //moon.isotopeIdsToSell.forEach(isotopeID => sellMineral(isotopeID)) //isotopes
       windowState[1] = 0
-
   } 
 
     // auto mineral clicker
@@ -166,7 +164,7 @@ async function execute() {
       //worldClickables array mineralov
       for(var i in worldClickables){
         while(worldClickables[i]){
-          onClickedMineralDeposit(worldClickables[i]);
+          onClickedMineralDeposit(worldClickables[i])
         }
       }
     }
@@ -175,7 +173,7 @@ async function execute() {
       while (chestService.chests != 0){
         chestService.chests.forEach(chest => {
           chestService.giveChestReward(chest)
-        });
+        })
       }
     }
 
