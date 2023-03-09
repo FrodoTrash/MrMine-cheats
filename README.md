@@ -7,7 +7,7 @@
 - auto gem crafting
 - auto chest compress
 
-works 26/02/2023
+works 9/03/2023
 
 paste files in directories:
 
