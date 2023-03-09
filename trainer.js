@@ -9,10 +9,18 @@ function createTrainer(){
   document.write( '    <span class=\"close\">X</span>\n' );
 
 
-  document.write( '    <button id="tAutoOpen" value="off" onClick="autoOpenToggle()" >auto open chests OFF</button><br>\n' );
-  document.write( '    <button id="tAutoSell" onClick="autoSellToggle()" >auto sell OFF</button><br>\n' );
-  document.write( '    <button id="tAutoMineral" onClick="autoMineralToggle()" >auto mine minerals OFF</button><br>\n' );
-  document.write( '    <button id="tAutoBattle" onClick="autoBattleToggle()" >auto battle OFF</button><br>\n' );
+  document.write( '    <button id="tAutoOpen" value="off" onClick="autoOpenToggle()" >auto open chests OFF</button>\n' ); //<br> breake line
+  document.write( '    <button id="tAutoSell" onClick="autoSellToggle()" >auto sell OFF</button>\n' );
+  document.write( '    <button id="tAutoMineral" onClick="autoMineralToggle()" >auto mine minerals OFF</button>\n' );
+  document.write( '    <button id="tAutoBattle" onClick="autoBattleToggle()" >auto battle OFF</button>\n' );
+  document.write( '    <button id="tAutoCompress" onClick="autoCompressToggle()" >auto compress OFF</button><br><br>\n' );
+
+  document.write( '    <button id="tAutoCraft" onClick="autoCraftToggle()" >auto craft red OFF</button>\n' );
+  document.write( '    <button id="tAutoCraft2" onClick="autoCraftToggle2()" >auto craft blue OFF</button>\n' );
+  document.write( '    <button id="tAutoCraft3" onClick="autoCraftToggle3()" >auto craft green OFF</button>\n' );
+  document.write( '    <button id="tAutoCraft4" onClick="autoCraftToggle4()" >auto craft purple OFF</button>\n' );
+  document.write( '    <button id="tAutoCraft5" onClick="autoCraftToggle5()" >auto craft yellow OFF</button>\n' );
+
   document.write( '  </div>\n' );
   document.write( '</div>' );
   var style = document.createElement('style')
@@ -124,11 +132,89 @@ function autoBattleToggle(){
   }
 }
 
+function autoCompressToggle(){
+  button = document.getElementById('tAutoCompress')
+  if(button.innerText == "auto compress OFF"){
+    isAutoCompressing = true
+    button.innerText = "auto compress ON"
+  }
+  else{
+    isAutoCompressing = false
+    button.innerText = "auto compress OFF"
+  }
+}
+
+function autoCraftToggle(){
+  button = document.getElementById('tAutoCraft')
+  if(button.innerText == "auto craft red OFF"){
+    isAutoCrafting = true
+    button.innerText = "auto craft red ON"
+  }
+  else{
+    isAutoCrafting = false
+    button.innerText = "auto craft red OFF"
+  }
+}
+
+function autoCraftToggle2(){
+  button = document.getElementById('tAutoCraft2')
+  if(button.innerText == "auto craft blue OFF"){
+    isAutoCrafting2 = true
+    button.innerText = "auto craft blue ON"
+  }
+  else{
+    isAutoCrafting2 = false
+    button.innerText = "auto craft blue OFF"
+  }
+}
+
+function autoCraftToggle3(){
+  button = document.getElementById('tAutoCraft3')
+  if(button.innerText == "auto craft green OFF"){
+    isAutoCrafting3 = true
+    button.innerText = "auto craft green ON"
+  }
+  else{
+    isAutoCrafting3 = false
+    button.innerText = "auto craft green OFF"
+  }
+}
+
+function autoCraftToggle4(){
+  button = document.getElementById('tAutoCraft4')
+  if(button.innerText == "auto craft purple OFF"){
+    isAutoCrafting4 = true
+    button.innerText = "auto craft purple ON"
+  }
+  else{
+    isAutoCrafting4 = false
+    button.innerText = "auto craft purple OFF"
+  }
+}
+
+function autoCraftToggle5(){
+  button = document.getElementById('tAutoCraft5')
+  if(button.innerText == "auto craft yellow OFF"){
+    isAutoCrafting5 = true
+    button.innerText = "auto craft yellow ON"
+  }
+  else{
+    isAutoCrafting5 = false
+    button.innerText = "auto craft yellow OFF"
+  }
+}
+
 
 isAutoSelling = false
 isAutoOpening = false
 isAutoMineral = false
 isAutoBattling = false
+isAutoCompressing = false
+isAutoCrafting = false
+isAutoCrafting2 = false
+isAutoCrafting3 = false
+isAutoCrafting4 = false
+isAutoCrafting5 = false
 
 if(cheatsEnable){
   createTrainer()
@@ -139,25 +225,30 @@ if(cheatsEnable){
   tAutoSell = document.getElementById('tAutoSell')
   tAutoOpen = document.getElementById('tAutoOpen')
   tAutoMineral = document.getElementById('tAutoMineral')
-  tAutoBattling = document.getElementById('tAutoBattle')
+  tAutoBattle = document.getElementById('tAutoBattle')
+  isAutoCompress = document.getElementById('tAutoCompress')
+  isAutoCraft = document.getElementById('tAutoCraft')
+  isAutoCraft2 = document.getElementById('tAutoCraft2')
+  isAutoCraft3 = document.getElementById('tAutoCraft3')
+  isAutoCraft4 = document.getElementById('tAutoCraft4')
+  isAutoCraft5 = document.getElementById('tAutoCraft5')
   execute()
 }
-
-
+ 
 async function execute(){
   while (cheatsEnable){
-    await new Promise(resolve => setTimeout(resolve, 1500))
-	if(isAutoSelling && isCapacityFull()){ 
-    if(windowState[1] != 1 ) //ce okno za prodajat ni odprto
+    await new Promise(r => setTimeout(r, 1500))
+    if(isAutoSelling && isCapacityFull()){ 
+      if(windowState[1] != 1 ) //ce okno za prodajat ni odprto
       windowState[1] = 1 // nastavi na 1, 0 = ni odprto, [1] pozicija
       ///earth
       sellAllMinerals(0) //ores
-      //sellAllMinerals(1) //isotppes
+      //sellAllMinerals(1) //isotoppes
       //moon
       moon.mineralIdsToSell.forEach(mineralID => sellMineral(mineralID)) //ores
       //moon.isotopeIdsToSell.forEach(isotopeID => sellMineral(isotopeID)) //isotopes
       windowState[1] = 0
-  } 
+    } 
 
     // auto mineral clicker
     if (isAutoMineral){
@@ -176,7 +267,6 @@ async function execute(){
         })
       }
     }
-
     // auto battleing
     if(isAutoBattling){
       if(battleWaiting != 0){
@@ -187,5 +277,40 @@ async function execute(){
         wonBattle()
       } 
     }
-  }
+    // add chests to compressor
+    if(isAutoCompressing){
+      if(chestCompressor.canQueueChest(ChestType.gold) == 1){
+        chestCompressor.addChestToQueue(ChestType.gold)
+      }
+      else if(chestCompressor.addChestToQueue(ChestType.black)){
+      }
+    }
+    //gem crafting
+    if(isAutoCrafting){
+      if(GemForger.canQueueGem(RED_FORGED_GEM_INDEX) == 1){
+        GemForger.addGemToQueue(RED_FORGED_GEM_INDEX)
+      }
+    }
+    if(isAutoCrafting2){
+      if(GemForger.canQueueGem(BLUE_FORGED_GEM_INDEX) == 1){
+        GemForger.addGemToQueue(BLUE_FORGED_GEM_INDEX)
+      }
+    }
+    if(isAutoCrafting3){
+      if(GemForger.canQueueGem(GREEN_FORGED_GEM_INDEX) == 1){
+        GemForger.addGemToQueue(GREEN_FORGED_GEM_INDEX)
+      }
+    }
+    if(isAutoCrafting4){
+      if(GemForger.canQueueGem(PURPLE_FORGED_GEM_INDEX) == 1){
+        GemForger.addGemToQueue(PURPLE_FORGED_GEM_INDEX)
+      }
+    }
+    if(isAutoCrafting5){
+      if(GemForger.canQueueGem(YELLOW_FORGED_GEM_INDEX) == 1){
+        GemForger.addGemToQueue(YELLOW_FORGED_GEM_INDEX)
+      }
+    }
+  }  
 }
+execute()
