@@ -4,6 +4,8 @@
 - auto open chests
 - auto mine minerals
 - auto win monsters
+- auto gem crafting
+- auto chest compress
 
 works 26/02/2023
 
