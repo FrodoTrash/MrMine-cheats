@@ -241,12 +241,15 @@ async function execute(){
     if(isAutoSelling && isCapacityFull()){ 
       if(windowState[1] != 1 ) //ce okno za prodajat ni odprto
       windowState[1] = 1 // nastavi na 1, 0 = ni odprto, [1] pozicija
-      ///earth
+      //earth
       sellAllMinerals(0) //ores
-      //sellAllMinerals(1) //isotoppes
+      //sellAllMinerals(1) //isotopes
       //moon
       moon.mineralIdsToSell.forEach(mineralID => sellMineral(mineralID)) //ores
       //moon.isotopeIdsToSell.forEach(isotopeID => sellMineral(isotopeID)) //isotopes
+      //titan
+      titan.mineralIdsToSell.forEach(mineralID => sellMineral(mineralID))//ores
+      //titan.isotopeIdsToSell.forEach(isotopeID => sellMineral(isotopeID)) //isotopes
       windowState[1] = 0
     } 
 
