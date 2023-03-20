@@ -8,8 +8,8 @@
 
 works 20/03/2023
 
-paste `trainer` to
+1. copy and paste `trainer` to
 > D:\SteamLibrary\steamapps\common\MrMine\win-unpacked\resources\app\
 
-add following lines to `index.js`
+2. add following lines to `index.js`
 > <script src="trainer.js"></script>
