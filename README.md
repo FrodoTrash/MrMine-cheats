@@ -12,4 +12,4 @@ paste `trainer` to
 > D:\SteamLibrary\steamapps\common\MrMine\win-unpacked\resources\app\
 
 add following lines to `index.js`
-<script src="trainer.js"></script>
+> <script src="trainer.js"></script>
